@@ -1,0 +1,511 @@
+Balkan_1_missions = {
+	slot = 1
+	generic = no
+	potential = {
+		tag = BLK
+	}
+	has_country_shield = yes
+	BLK_Croatian_independence_mission = {
+		icon = mission_destroy_the_hungarians
+		position = 1
+		provinces_to_highlight = {
+			owner = {
+				AND = {
+					OR = {
+						is_rival = HUN
+						is_enemy = HUN
+					}
+					NOT = { truce_with = HUN }
+				}
+			}
+		}
+		trigger = {			
+			OR = {
+				AND = {
+					any_ally = {
+						AND = {
+							OR = {
+								is_rival = HUN
+								is_enemy = HUN
+							}
+							NOT = { truce_with = HUN }
+							
+						}
+					}
+					ROOT = { NOT = { truce_with = HUN } }
+				}
+				CRO = {	is_subject_of = ROOT }
+				CRO = {	exists = no	}
+			}
+		}
+		effect = {
+			CRO = {	add_liberty_desire = 100 }
+			ROOT = { support_independence_of = CRO }
+			every_ally = {
+				AND = {
+						OR = {
+							is_rival = HUN
+							is_enemy = HUN
+						}
+						NOT = { truce_with = HUN }
+				}
+				support_independence_of = CRO
+			}
+			CRO = {
+				declare_war_with_cb = {
+					who = HUN
+					casus_belli = cb_independence_war
+				}
+				add_opinion = {
+					who = ROOT
+					modifier = supported_independence
+				}
+				add_trust = {
+					who = ROOT
+					value = 30
+					mutual = yes
+				}
+			}
+		}
+	}
+	BLK_conquer_Croatia_mission = {
+		icon = mission_integrate_croatia
+		required_missions = { BLK_Croatian_independence_mission BLK_force_limit_mission }
+		position = 2
+		provinces_to_highlight = {
+			OR = {
+				area = croatia_area
+				area = slavonia_area
+			}
+			OR = { NOT = { is_core = ROOT } }
+		}
+		trigger = {	
+			OR = {
+				CRO = {
+					alliance_with = ROOT
+					is_subject = no
+					is_at_war = no
+				}
+				num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+					OR = {
+						area = croatia_area
+						area = slavonia_area
+					}
+					value = 6
+				}
+			}
+		}
+		effect = {
+			if = {
+				limit = {
+					CRO = { alliance_with = ROOT }
+				}
+				create_subject = {
+					subject_type = personal_union
+					subject = CRO
+				}
+			}
+		}
+	}
+	BLK_naval_force_limit_mission = {
+		icon = mission_establish_high_seas_navy
+		position = 3
+		trigger = {
+			navy_size_percentage = 1
+		}
+		effect = {
+			northern_greece_area = { add_permanent_claim = ROOT }
+			morea_area = { add_permanent_claim = ROOT }
+		}
+	}
+	BLK_greek_foothold_mission = {
+		required_missions = { BLK_naval_force_limit_mission }
+		icon = mission_establish_high_seas_navy
+		position = 4
+		provinces_to_highlight = {
+			OR = {
+				area = northern_greece_area
+				area = morea_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+				OR = {
+					area = northern_greece_area
+					area = morea_area
+				}
+				value = 6
+			}
+		}
+		effect = {
+		}
+	}
+	BLK_eastern_roman_empire_mission = {
+		required_missions = { BLK_greek_foothold_mission }
+		icon = mission_establish_high_seas_navy
+		position = 5
+		provinces_to_highlight = {
+			OR = {
+				area = macedonia_area
+				area = thrace_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+				OR = {
+					area = macedonia_area
+					area = thrace_area
+				}
+				value = 8
+			}
+		}
+		effect = {
+		}
+	}
+}
+Balkan_2_missions = {
+	slot = 2
+	generic = no
+	potential = {
+		tag = BLK
+	}
+	has_country_shield = yes
+	BLK_conquer_Bosnia_mission = {
+		icon = fra_appease_the_princes
+		required_missions = { BLK_force_limit_mission }
+		position = 2
+		provinces_to_highlight = {
+			OR = {
+				province_id = 1828
+				province_id = 140
+				province_id = 3002
+				province_id = 4755
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {
+			owns_core_province = 140
+			owns_core_province = 3002
+			owns_core_province = 4755
+			owns_core_province = 1828
+		}
+		effect = {
+		}
+	}
+	BLK_bulgaria_mission = {
+		required_missions = { BLK_greek_foothold_mission }
+		icon = mission_establish_high_seas_navy
+		position = 5
+		provinces_to_highlight = {
+			OR = {
+				area = bulgaria_area
+				area = silistria_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+				OR = {
+					area = bulgaria_area
+					area = silistria_area
+				}
+				value = 8
+			}
+		}
+		effect = {
+		}
+	}
+}
+Balkan_3_missions = {
+	slot = 3
+	generic = no
+	potential = {
+		tag = BLK
+	}
+	has_country_shield = yes
+	BLK_force_limit_mission = {
+		position = 1
+		icon = mission_build_up_to_force_limit
+		trigger = {
+			army_size_percentage = 1
+		}
+		effect = {
+			set_country_flag = enable_unite_balkans_cb_flag
+			custom_tooltip = boh_enable_balkan_cb_tt
+			carinthia_area = { add_permanent_claim = ROOT }
+			croatia_area = { add_permanent_claim = ROOT }
+			slavonia_area = { add_permanent_claim = ROOT }
+			bosnia_area = { add_permanent_claim = ROOT }
+			serbia_area = { add_permanent_claim = ROOT }
+			rascia_area = { add_permanent_claim = ROOT }
+			albania_area = { add_permanent_claim = ROOT }
+		}
+	}
+	BLK_conquer_Herzegovina_mission = {
+		required_missions = { BLK_force_limit_mission }
+		icon = mission_recover_nitrava
+		position = 2
+		provinces_to_highlight = {
+			OR = {
+				province_id = 1831
+				province_id = 139
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {
+			owns_core_province = 1831
+			owns_core_province = 139
+		}
+		effect = {
+		}
+	}
+	BLK_balkan_princes_mission = {
+		required_missions = { BLK_conquer_Croatia_mission BLK_conquer_Bosnia_mission BLK_conquer_Herzegovina_mission BLK_conquer_Albania_mission BLK_conquer_Serbia_mission }
+		icon = mission_unite_home_region
+		position = 3
+		trigger = {
+		}
+		effect = {
+			override_country_name = BALKAN_EMPIRE
+			set_government_rank = 3	
+			change_country_color = { color = { 12 23 41 } }
+			
+			if = {
+				limit = {
+					CRO = {
+						is_subject_of = ROOT
+					}
+				}
+				create_subject = {
+					subject_type = integrated_personal_union
+					subject = CRO
+				}
+			}
+		}
+	}
+	BLK_unite_slavs = {
+		icon = mission_protect_the_south_slavs
+		required_missions = { BLK_balkan_princes_mission BLK_eastern_roman_empire_mission BLK_bulgaria_mission }
+		position = 6
+		provinces_to_highlight = {
+			owner = {
+				total_development = 200
+				OR = {
+					culture_group = west_slavic
+					culture_group = east_slavic
+				}
+			}
+		}
+
+		trigger = {
+			any_ally = {
+				culture_group = west_slavic
+				total_development = 200
+			}
+			any_ally = {
+				culture_group = east_slavic
+				total_development = 200
+			}
+		}
+		effect = {
+			custom_tooltip = mos_rus_protect_south_slavs_bt
+			hidden_effect = {
+				if = { limit = { accepted_culture = russian } remove_accepted_culture = russian }
+				if = { limit = { accepted_culture = czech } remove_accepted_culture = czech }
+				if = { limit = { accepted_culture = polish } remove_accepted_culture = polish }
+				if = { limit = { accepted_culture = schlesian } remove_accepted_culture = schlesian }
+				if = { limit = { accepted_culture = sorbian } remove_accepted_culture = sorbian }
+				if = { limit = { accepted_culture = slovak } remove_accepted_culture = slovak }
+				if = { limit = { accepted_culture = novgorodian } remove_accepted_culture = novgorodian }
+				if = { limit = { accepted_culture = ryazanian } remove_accepted_culture = ryazanian }
+				if = { limit = { accepted_culture = byelorussian } remove_accepted_culture = byelorussian }
+				if = { limit = { accepted_culture = ruthenian } remove_accepted_culture = ruthenian }
+				if = { limit = { accepted_culture = slovene } remove_accepted_culture = slovene }
+				if = { limit = { accepted_culture = bosnian } remove_accepted_culture = bosnian }
+				if = { limit = { accepted_culture = serbian } remove_accepted_culture = serbian }
+				if = { limit = { accepted_culture = bulgarian } remove_accepted_culture = bulgarian }
+				if = { limit = { accepted_culture = croatian } remove_accepted_culture = croatian }
+				create_new_culture_group = {
+					culture_group = slavic
+					culture = croatian
+					culture2 = czech
+					culture3 = polish
+					culture4 = schlesian
+					culture5 = sorbian
+					culture6 = slovak
+					culture7 = novgorodian
+					culture8 = ryazanian
+					culture9 = byelorussian
+					culture10 = ruthenian
+					culture12 = slovene
+					culture13 = bosnian
+					culture14 = serbian
+					culture15 = bulgarian
+					culture16 = russian
+				}
+			}
+		}
+	}
+}
+Balkan_4_missions = {
+	slot = 4
+	generic = no
+	potential = {
+		tag = BLK
+	}
+	has_country_shield = yes
+	BLK_conquer_Albania_mission = {
+		icon = mission_bane_of_the_hansa
+		required_missions = { BLK_force_limit_mission }
+		position = 2
+		provinces_to_highlight = {
+			area = albania_area
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {			
+			num_of_owned_provinces_with  = {
+				area = albania_area
+				value = 2
+			}
+		}
+		effect = {
+		}
+	}
+}
+Balkan_5_missions = {
+	slot = 5
+	generic = no
+	potential = {
+		tag = BLK
+	}
+	has_country_shield = yes
+	BLK_conquer_Serbia_mission = {
+		icon = geo_preventing_collapse
+		required_missions = { BLK_force_limit_mission }
+		position = 2
+		provinces_to_highlight = {
+			OR = {
+				area = serbia_area
+				area = rascia_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+			}
+		}
+		trigger = {			
+			num_of_owned_provinces_with  = {
+				OR = {
+					area = serbia_area
+					area = rascia_area
+				}
+				value = 7
+			}
+		}
+		effect = {
+		}
+	}
+	BLK_Kosovo_gold_mine_mission = {
+		icon = mission_african_gold
+		required_missions = { BLK_conquer_Serbia_mission }
+		position = 3
+		provinces_to_highlight = {
+			province_id = 1766
+		}
+		trigger = {			
+			1766 = {
+				owned_by = ROOT
+				base_production = 10
+			}
+		}
+		effect = {
+		}
+	}
+	BLK_Maginot_mission = {
+		icon = mission_african_gold
+		required_missions = {  }
+		position = 5
+		provinces_to_highlight = {
+			OR = {
+				province_id = 139
+				province_id = 1831
+				province_id = 138
+				province_id = 4175
+				province_id = 4750
+				province_id = 143
+				province_id = 1853
+			}
+		}
+		trigger = {			
+			owns = 139
+            owns = 1831
+            owns = 138
+            owns = 4175
+            owns = 4750
+            owns = 143
+            owns = 1853
+
+                139 = {
+                    has_building = fort_15th
+                }
+                1831 = {
+                    has_building = fort_15th
+                }
+                138 = {
+                    has_building = fort_15th
+                }
+                4175 = { has_building = fort_15th }
+                4750 = { has_building = fort_15th }
+                143 = { has_building = fort_15th }
+                1853 = { has_building = fort_15th }
+		}
+		effect = {
+		}
+	}
+	BLK_expand_Maginot_mission = {
+		icon = mission_african_gold
+		required_missions = { BLK_Maginot_mission }
+		position = 6
+		provinces_to_highlight = {
+			region = balkan_region
+			OR = {
+				has_terrain  = mountain
+				has_terrain  = highlands
+				has_terrain  = hills
+			}
+			NOT = { 
+				AND = {
+					is_core = ROOT
+					has_building = fort_15th
+				}
+			}
+		}
+		trigger = {	
+			every_province = {
+				OR = {
+					has_terrain  = mountain
+					has_terrain  = highlands
+					has_terrain  = hills
+				}
+				region = balkan_region
+				is_core = ROOT
+				has_building = fort_15th
+			}
+		}
+		effect = {
+		}
+	}
+}

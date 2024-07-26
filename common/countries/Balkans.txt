@@ -1,0 +1,17 @@
+#Balkan
+
+graphical_culture = easterngfx
+
+color = { 52  11  16 }
+
+revolutionary_colors = { 4 1 4 }
+
+
+monarch_names = {
+}
+
+leader_names = {
+}
+
+ship_names = {
+}

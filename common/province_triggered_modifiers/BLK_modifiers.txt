@@ -1,0 +1,12 @@
+balkan_maginot_line = {
+    potential = {
+    }
+    trigger = {
+        has_building = fort_15th
+		owner = {
+			mission_completed = BLK_Maginot_mission
+		}
+    }
+	local_defensiveness = 0.5
+    local_fort_maintenance_modifier  = -0.25
+}

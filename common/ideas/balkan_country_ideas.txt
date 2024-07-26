@@ -1,0 +1,39 @@
+BLK_ideas = {
+	start = {	
+		land_morale = 0.20
+		army_tradition = 10
+	}
+	
+	bonus = {
+		naval_morale = 0.2
+	}	
+
+	trigger = {
+		tag = BLK
+	}
+	free = yes
+	
+	ure_1 = {
+		discipline = 0.10
+	}
+	ure_2 = {
+		land_maintenance_modifier = -0.5
+
+	}
+	ure_3 = {
+		manpower_recovery_speed = 0.20
+	}
+	ure_4 = {
+		governing_capacity_modifier = 1.5
+	}
+	ure_5 = {
+		ae_impact = -0.35
+		improve_relation_modifier = 1
+	}
+	ure_6 = {
+		land_attrition = -0.5
+	}
+	ure_7 = {
+		navy_tradition = 1
+	}
+}

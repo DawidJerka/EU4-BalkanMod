@@ -1,0 +1,19 @@
+government = monarchy
+add_government_reform = feudalism_reform
+technology_group = eastern
+religion = catholic
+primary_culture = croatian
+capital = 136 # Spalato
+add_accepted_culture = dalmatian
+historical_friend = CRO
+
+1444.11.11 = {
+	monarch = {
+		name = "Artorias"
+		dynasty = "Balkanski"
+		birth_date = 1426.11.11
+		adm = 3
+		dip = 3
+		mil = 6
+	}
+
