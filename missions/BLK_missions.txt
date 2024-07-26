@@ -457,20 +457,13 @@ Balkan_5_missions = {
             owns = 4750
             owns = 143
             owns = 1853
-
-                139 = {
-                    has_building = fort_15th
-                }
-                1831 = {
-                    has_building = fort_15th
-                }
-                138 = {
-                    has_building = fort_15th
-                }
-                4175 = { has_building = fort_15th }
-                4750 = { has_building = fort_15th }
-                143 = { has_building = fort_15th }
-                1853 = { has_building = fort_15th }
+            139 = { has_building = fort_15th }
+            1831 = { has_building = fort_15th }
+            138 = { has_building = fort_15th }
+            4175 = { has_building = fort_15th }
+            4750 = { has_building = fort_15th }
+            143 = { has_building = fort_15th }
+            1853 = { has_building = fort_15th }
 		}
 		effect = {
 		}
@@ -488,21 +481,28 @@ Balkan_5_missions = {
 			}
 			NOT = { 
 				AND = {
-					is_core = ROOT
+					country_or_non_sovereign_subject_holds = ROOT
 					has_building = fort_15th
 				}
+				province_id = 4239
+				province_id = 163
 			}
 		}
 		trigger = {	
-			every_province = {
+			num_of_owned_provinces_with  = {
+				region = balkan_region
 				OR = {
 					has_terrain  = mountain
 					has_terrain  = highlands
 					has_terrain  = hills
 				}
-				region = balkan_region
-				is_core = ROOT
+				NOT = {
+					province_id = 4239
+					province_id = 163
+				}
+				country_or_non_sovereign_subject_holds = ROOT
 				has_building = fort_15th
+				value = 25
 			}
 		}
 		effect = {
