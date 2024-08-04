@@ -10,3 +10,12 @@ balkan_maginot_line = {
 	local_defensiveness = 0.5
     local_fort_maintenance_modifier  = -0.25
 }
+
+kosovo_gold_mine = {
+    potential = {
+    }
+    trigger = {
+        trade_goods = gold
+    }
+	local_gold_depletion_chance_modifier = -1
+}

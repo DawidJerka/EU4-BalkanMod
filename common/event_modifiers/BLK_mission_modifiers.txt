@@ -1,0 +1,5 @@
+kosovo_gold_mine = {
+	local_gold_depletion_chance_modifier = -1
+	local_development_cost = -0.25
+	local_development_cost_modifier = -0.25
+}

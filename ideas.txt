@@ -11,6 +11,19 @@ Nandorfehervar (Hungary) COT
 Ragusa COT
 Durazzo (Venice) COT
 Atene (athens) COT, Partheon
-Selanik (Otto) COT
+Selanik (Otto) COT   <- super prowincja do devowania (farmlands, cot, cloth)
 Constantinople (Byzantine) COT, Toll, Hagia Sophia
-Kosovo (Serbia) gold/coal
+Kosovo (Serbia) gold/coal   <- misje na kopalnie
+
+Państwa na Bałkanach (# czy mają swoje misje)
+Ottomans
+Venice
+Albania
+Herzegovina
+Bosnia
+Croatia
+Byzantium
+Athens
+Epirus
+Serbia
+Hungary

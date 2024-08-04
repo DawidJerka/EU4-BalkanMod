@@ -1,7 +1,7 @@
 BLK_ideas = {
 	start = {	
-		land_morale = 0.20
-		army_tradition = 10
+		land_morale = 0.10
+		discipline = 0.10
 	}
 	
 	bonus = {
@@ -13,12 +13,13 @@ BLK_ideas = {
 	}
 	free = yes
 	
-	ure_1 = {
-		discipline = 0.10
+	blk_no_coalition = {
+		ae_impact = -0.2
+		improve_relation_modifier = 0.25
+
 	}
 	ure_2 = {
 		land_maintenance_modifier = -0.5
-
 	}
 	ure_3 = {
 		manpower_recovery_speed = 0.20
@@ -27,8 +28,7 @@ BLK_ideas = {
 		governing_capacity_modifier = 1.5
 	}
 	ure_5 = {
-		ae_impact = -0.35
-		improve_relation_modifier = 1
+
 	}
 	ure_6 = {
 		land_attrition = -0.5
